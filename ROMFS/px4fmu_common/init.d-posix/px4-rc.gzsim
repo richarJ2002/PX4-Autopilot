@@ -136,10 +136,10 @@ if [ -n "${PX4_SIM_MODEL#*gz_}" ] && [ -z "${PX4_GZ_MODEL_NAME}" ]; then
 	# include the actual SDF in this one, containing the pose if given
 	sdf_str="<sdf version=\"1.6\"> <include> <uri>file://${PX4_GZ_MODELS}/${MODEL_NAME}/model.sdf</uri> ${sdf_pose_str} </include> </sdf>"
 
-	# Spawn model
-	${gz_command} service -s "/world/${PX4_GZ_WORLD}/create" --reqtype gz.msgs.EntityFactory \
-			--reptype gz.msgs.Boolean --timeout 5000 \
-			--req "name: \"${MODEL_NAME_INSTANCE}\", allow_renaming: false, sdf: '${sdf_str}'" > /dev/null 2>&1
+	# # Spawn model
+	# ${gz_command} service -s "/world/${PX4_GZ_WORLD}/create" --reqtype gz.msgs.EntityFactory \
+	# 		--reptype gz.msgs.Boolean --timeout 5000 \
+	# 		--req "name: \"${MODEL_NAME_INSTANCE}\", allow_renaming: false, sdf: '${sdf_str}'" > /dev/null 2>&1
 
 	# Wait for model to spawn
 	sleep 1
@@ -168,10 +168,10 @@ if [ -n "${PX4_SIM_MODEL#*gz_}" ] && [ -z "${PX4_GZ_MODEL_NAME}" ]; then
 		follow_y=${PX4_GZ_FOLLOW_OFFSET_Y:--2.0}
 		follow_z=${PX4_GZ_FOLLOW_OFFSET_Z:-2.0}
 
-		# Set camera offset
-		${gz_command} topic -t /gui/track -m gz.msgs.CameraTrack \
-				-p "track_mode: FOLLOW, follow_target: {name: '${MODEL_NAME_INSTANCE}'},\
-				 follow_offset: {x: ${follow_x}, y: ${follow_y}, z: ${follow_z}}, follow_pgain: 1.0, track_pgain: 1.0"
+		# # Set camera offset
+		# ${gz_command} topic -t /gui/track -m gz.msgs.CameraTrack \
+		# 		-p "track_mode: FOLLOW, follow_target: {name: '${MODEL_NAME_INSTANCE}'},\
+		# 		 follow_offset: {x: ${follow_x}, y: ${follow_y}, z: ${follow_z}}, follow_pgain: 1.0, track_pgain: 1.0"
 
 		echo "INFO  [init] Camera follow offset set to ${follow_x}, ${follow_y}, ${follow_z}"
 	fi
