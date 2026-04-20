@@ -44,12 +44,12 @@ else
 	verbose=""
 fi
 
-# Disable follow mode
-if [[ "$PX4_NO_FOLLOW_MODE" != "1" ]]; then
-    follow_mode="--gui-client-plugin libgazebo_user_camera_plugin.so"
-else
-    follow_mode=""
-fi
+# # Disable follow mode
+# if [[ "$PX4_NO_FOLLOW_MODE" != "1" ]]; then
+#     follow_mode="--gui-client-plugin libgazebo_user_camera_plugin.so"
+# else
+#     follow_mode=""
+# fi
 
 # To use gazebo_ros ROS2 plugins
 if [[ -n "$ROS_VERSION" ]] && [ "$ROS_VERSION" == "2" ]; then
